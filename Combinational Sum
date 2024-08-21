@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void findCombinations(int idx, int target, vector<int> &arr, vector<vector<int>> &result, vector<int> &ds){
+        if(idx==arr.size()){
+            if(target==0) result.push_back(ds);
+            return;
+        }
+
+        if(arr[idx]<=target){
+            ds.push_back(arr[idx]);
+            findCombinations(idx, target-arr[idx], arr, result, ds);
+            ds.pop_back();
+        }
+
+        findCombinations(idx+1, target, arr, result, ds);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> result;
+        vector<int> ds;
+        findCombinations(0, target, candidates, result, ds);
+        return result;
+    }
+};
