@@ -1,0 +1,63 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+
+class Solution
+{
+  public:
+    string secFrequent (string arr[], int n)
+    {
+        map<string, int> mp1;
+        for(int i=0;i<n;i++)
+        {
+            mp1[arr[i]]++;
+        }
+        
+        int ct = INT_MIN;
+        for(auto itr : mp1)
+        {
+            if(itr.second>ct)
+            {
+                ct = itr.second;
+            }
+        }
+        
+        int tmp = INT_MIN;
+        string str = "";
+        for(auto itr : mp1)
+        {
+            if(itr.second!=ct && itr.second>tmp)
+            {
+                tmp = itr.second;
+                str = itr.first;
+            }
+        }
+        
+        if(!str.empty())
+        {
+            return str;
+        }
+        
+        return "";
+    }
+};
+
+//{ Driver Code Starts.
+int main()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        int n; cin >> n;
+        string arr[n];
+        for (int i = 0; i < n; ++i)
+            cin >> arr[i];
+        Solution ob;
+        cout << ob.secFrequent (arr, n) << endl;
+    }
+}
+// Contributed By: Pranay Bansal
+
+// } Driver Code Ends
